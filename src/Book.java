@@ -11,11 +11,10 @@
  */
 public class Book {
 
-    private  String title;
-    private  String author;
-    private  int pages;
-    private  double price;
-    // Hint: You need String title, String author, int pages, double price
+    private String title;
+    private String author;
+    private int pages;
+    private double price;
 
 
 
@@ -29,10 +28,10 @@ public class Book {
      * - price: 0.0
      */
     public Book() {
-        this.title = "Unknown Title";
-        this.author = "Unknown Author";
-        this.pages = 0;
-        this.price = 0.0;
+        title = "Unknown Title";
+        author = "Unknown Author";
+        pages = 0;
+        price = 0.0;
     }
 
     /**
@@ -43,8 +42,8 @@ public class Book {
     public Book(String title, String author, int pages, double price) {
         this.title = title;
         this.author = author;
-        setPages(pages);
-        setPrice(price);
+        this.pages = pages;
+        this.price = price;
     }
 
     /**
@@ -99,7 +98,7 @@ public class Book {
      * @param title the new title for the book
      */
     public void setTitle(String title) {
-        if (title == null || title.isEmpty()) {
+        if (title != null && !title.isEmpty()) {
             this.title = title;
         }else  {
             System.out.println("Title invalid");
@@ -112,7 +111,7 @@ public class Book {
      * @param author the new author for the book
      */
     public void setAuthor(String author) {
-        if (author == null || author.isEmpty()) {
+        if (author != null && !author.trim().isEmpty()) {
             this.author = author;
         }else  {
             System.out.println("Author invalid");
@@ -158,8 +157,7 @@ public class Book {
      * @return estimated reading time in minutes
      */
     public double calculateReadingTime() {
-        int time = (pages * 250) / 200;
-        return time;
+        return pages * 250.0 / 200.0;
     }
 
     /**
@@ -207,15 +205,11 @@ public class Book {
      * @param discountPercent the discount percentage (0-100)
      */
     public void applyDiscount(double discountPercent) {
-        if (discountPercent >= 0.0 && discountPercent <= 100) {
-            return newprice = price * (1 - discountPercent/100);
-        }
-
+            price = price * (1 - discountPercent/100);
 
     }
 
     // OVERRIDE METHODS
-    // TODO 8: Override Object class methods
 
     /**
      * Returns a string representation of the book
@@ -240,12 +234,20 @@ public class Book {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            if (obj == null || obj.getClass() != this.getClass()) {
-                obj = book;
-                Double.compare(price, other.price) == 0
-                return true;
-            }
-        }
+        if (obj == null){
+            return false;
+        }else if (this == obj){
+            return true;
+        }else if (obj.getClass() == this.getClass()) {
+            return false;
+        } else if (!title.equals(((Book) obj).title)) {
+            return false;
+        }else if (!author.equals(((Book) obj).author)) {
+            return false;
+        }else if (pages != ((Book) obj).pages) {
+            return false;
+        }else return price == ((Book) obj).price;
+
     }
+
 }

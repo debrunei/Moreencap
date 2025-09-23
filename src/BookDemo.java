@@ -1,9 +1,7 @@
 /**
  * BookDemo - Test Class for Book Implementation
- *
  * Use this class to test your Book class implementation.
- * Run this after completing all TODOs in the Book class.
- *
+ * Run this after completing all TODOs in the Book class.*
  * Expected behavior:
  * - All tests should run without errors
  * - Output should be formatted and readable
